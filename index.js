@@ -1,9 +1,12 @@
 'use strict'
 
+const assign = require('deep-assign')
 const kvmeshProto = require('./lib/kvmesh')
 const readConfig = require('./lib/readConfig')
 
 /**
+ * @property {object} [initialConfig] A default config object in case no
+ * configuration files are available. Default: `{}`.
  * @property {string} [delim] Set the delimiter to use in path based operations
  * like {@link kvmesh.get}. Default: `.`.
  * @property {array|object} [loaders] Define a set of additional configuration
@@ -45,7 +48,7 @@ module.exports = function (options) {
     value: options.logger || require('abstract-logging')
   })
 
-  const config = readConfig(instance)
+  const config = assign({}, options.initialConfig || {}, readConfig(instance))
   Object.defineProperty(instance, 'config', {value: config})
 
   return instance

@@ -114,8 +114,9 @@ factory function:
 ```js
 {
   delim: '.', // String path delimeter for the `get` and `set` methods.
-  logger: {}, // A log4j API compliant logger like https://npm.im/pino (null logger by default)
-  loaders: [] // An array of loader objects: `{ext: '.foo', method: (file) => {}}`
+  logger: {}, // A log4j API compliant logger like https://npm.im/pino (null logger by default).
+  loaders: [], // An array of loader objects: `{ext: '.foo', method: (file) => {}}`.
+  initialConfig: {} // Defaults to use if no configuration files are found.
 }
 ```
 
