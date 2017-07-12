@@ -1,0 +1,43 @@
+{
+  "name": "kvmesh",
+  "version": "1.0.0-rc.1",
+  "description": "A config management library (yet another one)",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap 'test/**/*.test.js'",
+    "lint": "standard | snazzy",
+    "doc": "jsdoc2md index.js 'lib/**/*.js' > api.md",
+    "precommit-doc": "npm run doc && git add api.md"
+  },
+  "precommit": [
+    "lint",
+    "test",
+    "precommit-doc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jsumners/kvmesh.git"
+  },
+  "keywords": [
+    "conf",
+    "config",
+    "configuration"
+  ],
+  "author": "James Sumners <james.sumners@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jsumners/kvmesh/issues"
+  },
+  "homepage": "https://github.com/jsumners/kvmesh#readme",
+  "devDependencies": {
+    "jsdoc-to-markdown": "^3.0.0",
+    "mock-require": "^2.0.2",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2",
+    "tap": "^10.7.0"
+  },
+  "dependencies": {
+    "abstract-logging": "^1.0.0",
+    "deep-assign": "^2.0.0"
+  }
+}
