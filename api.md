@@ -121,6 +121,7 @@ Build a kvmesh instance.
 
 | Name | Type | Description |
 | --- | --- | --- |
+| initialConfig | <code>object</code> | A default config object in case no configuration files are available. Default: `{}`. |
 | delim | <code>string</code> | Set the delimiter to use in path based operations like [get](#kvmesh.get). Default: `.`. |
 | loaders | <code>array</code> \| <code>object</code> | Define a set of additional configuration loaders. If passing an array, the array should be a list of objects like `{ext: '.foo', method: () => {}}`. If passing an object, the keys should be the extension and the values the methods, e.g. `{ '.foo': () => {} }`. |
 | logger | <code>object</code> | A logger instance that conforms to the log4j API. For example, [https://npm.im/pino](https://npm.im/pino). |
