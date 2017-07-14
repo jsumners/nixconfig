@@ -6,7 +6,7 @@ const mockquire = require('mock-require')
 
 mockquire('../lib/parentPkg', {
   name: 'foo',
-  kvmeshPrefix: 'kvmesh_'
+  nixconfigPrefix: 'nixconfig_'
 })
 
 mockquire('../lib/lookupPaths', [
@@ -14,16 +14,16 @@ mockquire('../lib/lookupPaths', [
   path.join(__dirname, 'fixtures', 'etc', 'foo')
 ])
 
-const kvmeshProto = require('../lib/kvmesh')
+const nixconfigProto = require('../lib/nixconfig')
 const readConfig = require('../lib/readConfig')
 
 test('loads files from /etc', (t) => {
   t.plan(6)
-  const kvmesh = Object.create(kvmeshProto, {
+  const nixconfig = Object.create(nixconfigProto, {
     config: {value: {}},
     log: {value: require('abstract-logging')}
   })
-  const config = readConfig(kvmesh)
+  const config = readConfig(nixconfig)
   t.ok(config.foo)
   t.is(config.foo, 'foo')
   t.ok(config.bar)
@@ -34,12 +34,12 @@ test('loads files from /etc', (t) => {
 
 test('loads from environment', (t) => {
   t.plan(2)
-  const kvmesh = Object.create(kvmeshProto, {
+  const nixconfig = Object.create(nixconfigProto, {
     config: {value: {}},
     log: {value: require('abstract-logging')}
   })
-  process.env['kvmesh_foobar'] = 'foobar'
-  const config = readConfig(kvmesh)
+  process.env['nixconfig_foobar'] = 'foobar'
+  const config = readConfig(nixconfig)
   t.ok(config.foobar)
   t.is(config.foobar, 'foobar')
 })

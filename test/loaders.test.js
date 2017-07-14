@@ -1,41 +1,41 @@
 'use strict'
 
 const test = require('tap').test
-const kvmeshProto = require('../lib/kvmesh')
+const nixconfigProto = require('../lib/nixconfig')
 
 test('addLoader throws for invalid extension format', (t) => {
-  const kvmesh = Object.create(kvmeshProto)
-  t.throws(() => kvmesh.addLoader('foo', null), /have leading/)
+  const nixconfig = Object.create(nixconfigProto)
+  t.throws(() => nixconfig.addLoader('foo', null), /have leading/)
   t.end()
 })
 
 test('addLoader throws for non-function method', (t) => {
-  const kvmesh = Object.create(kvmeshProto)
-  t.throws(() => kvmesh.addLoader('.foo', {}), /a function/)
+  const nixconfig = Object.create(nixconfigProto)
+  t.throws(() => nixconfig.addLoader('.foo', {}), /a function/)
   t.end()
 })
 
 test('addLoader adds a loader', (t) => {
   t.plan(1)
-  const kvmesh = Object.create(kvmeshProto)
-  kvmesh.addLoader('.foo', () => {})
-  t.ok(kvmesh.loaders['.foo'])
+  const nixconfig = Object.create(nixconfigProto)
+  nixconfig.addLoader('.foo', () => {})
+  t.ok(nixconfig.loaders['.foo'])
 })
 
 // test('config.loaders adds loaders to the instance via an array', (t) => {
 //   t.plan(1)
-//   const kvmesh = kvmeshProto({
+//   const nixconfig = nixconfigProto({
 //     loaders: [{ext: '.foo', method: () => {}}]
 //   })
-//   t.ok(kvmesh.loaders['.foo'])
+//   t.ok(nixconfig.loaders['.foo'])
 // })
 
 // test('config.loaders adds loader to the intance via an object', (t) => {
 //   t.plan(1)
-//   const kvmesh = kvmeshProto({
+//   const nixconfig = nixconfigProto({
 //     loaders: {
 //       '.foo': () => {}
 //     }
 //   })
-//   t.ok(kvmesh.loaders['.foo'])
+//   t.ok(nixconfig.loaders['.foo'])
 // })

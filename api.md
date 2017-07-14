@@ -1,7 +1,7 @@
 ## Objects
 
 <dl>
-<dt><a href="#kvmesh">kvmesh</a> : <code>object</code></dt>
+<dt><a href="#nixconfig">nixconfig</a> : <code>object</code></dt>
 <dd><p>A simple tool for reading configuration files from standard storage paths
 and the environment.</p>
 <p>Internally, all of the loaded configuration is merged into a standard
@@ -14,21 +14,21 @@ JavaScript object. The properties of this object can be accessed via the
 ## Functions
 
 <dl>
-<dt><a href="#kvmeshFactory">kvmeshFactory(options)</a> ⇒ <code><a href="#kvmesh">kvmesh</a></code></dt>
-<dd><p>Build a kvmesh instance.</p>
+<dt><a href="#nixconfigFactory">nixconfigFactory(options)</a> ⇒ <code><a href="#nixconfig">nixconfig</a></code></dt>
+<dd><p>Build a nixconfig instance.</p>
 </dd>
 </dl>
 
 ## Typedefs
 
 <dl>
-<dt><a href="#KvmeshOptions">KvmeshOptions</a> : <code>object</code></dt>
+<dt><a href="#NixconfigOptions">NixconfigOptions</a> : <code>object</code></dt>
 <dd></dd>
 </dl>
 
-<a name="kvmesh"></a>
+<a name="nixconfig"></a>
 
-## kvmesh : <code>object</code>
+## nixconfig : <code>object</code>
 A simple tool for reading configuration files from standard storage paths
 and the environment.
 
@@ -46,20 +46,20 @@ JavaScript object. The properties of this object can be accessed via the
 | config | <code>object</code> | The internal object that represents all of the loaded configuration. |
 
 
-* [kvmesh](#kvmesh) : <code>object</code>
-    * [.addLoader(ext, method)](#kvmesh.addLoader) ⇒ <code>object</code>
-    * [.get(key)](#kvmesh.get) ⇒ <code>\*</code> \| <code>undefined</code>
-    * [.set(key)](#kvmesh.set) ⇒ [<code>kvmesh</code>](#kvmesh)
+* [nixconfig](#nixconfig) : <code>object</code>
+    * [.addLoader(ext, method)](#nixconfig.addLoader) ⇒ <code>object</code>
+    * [.get(key)](#nixconfig.get) ⇒ <code>\*</code> \| <code>undefined</code>
+    * [.set(key)](#nixconfig.set) ⇒ [<code>nixconfig</code>](#nixconfig)
 
-<a name="kvmesh.addLoader"></a>
+<a name="nixconfig.addLoader"></a>
 
-### kvmesh.addLoader(ext, method) ⇒ <code>object</code>
+### nixconfig.addLoader(ext, method) ⇒ <code>object</code>
 Add a method to load a specific configuration file format. The method
 must return a standard JavaScript object. If the method throws, then the
 error will be ignored.
 
-**Kind**: static method of [<code>kvmesh</code>](#kvmesh)  
-**Returns**: <code>object</code> - The current *kvmesh* instance.  
+**Kind**: static method of [<code>nixconfig</code>](#nixconfig)  
+**Returns**: <code>object</code> - The current *nixconfig* instance.  
 **Throws**:
 
 - <code>Error</code> When the given extension does not start with a leading `.`
@@ -71,58 +71,58 @@ or the `method` is not a function.
 | ext | <code>string</code> | The file extension for the loader method, e.g. `'.foo'`. If the extension leads with a '.' then the loader will be used for parsing files on the file system. If it begins with a '~' then it will simply be invoked after all files have been processed. |
 | method | <code>function</code> | The function that will be used to process files with the specified extension. |
 
-<a name="kvmesh.get"></a>
+<a name="nixconfig.get"></a>
 
-### kvmesh.get(key) ⇒ <code>\*</code> \| <code>undefined</code>
+### nixconfig.get(key) ⇒ <code>\*</code> \| <code>undefined</code>
 Retrieve values from the loaded configuration.
 
-**Kind**: static method of [<code>kvmesh</code>](#kvmesh)  
+**Kind**: static method of [<code>nixconfig</code>](#nixconfig)  
 **Returns**: <code>\*</code> \| <code>undefined</code> - The retrieved value, or `undefined` if it could
 not be found.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| key | <code>string</code> | The name of the value to retrieve. This can be a path, separated by the `kvmesh.delim` value. For example, `foo.bar` to access `bar` of `{foo: { bar: {} }}`. |
+| key | <code>string</code> | The name of the value to retrieve. This can be a path, separated by the `nixconfig.delim` value. For example, `foo.bar` to access `bar` of `{foo: { bar: {} }}`. |
 
-<a name="kvmesh.set"></a>
+<a name="nixconfig.set"></a>
 
-### kvmesh.set(key) ⇒ [<code>kvmesh</code>](#kvmesh)
+### nixconfig.set(key) ⇒ [<code>nixconfig</code>](#nixconfig)
 Set a value in the internal configuration. Paths may be used just as is
 described in `.get`.
 
-**Kind**: static method of [<code>kvmesh</code>](#kvmesh)  
-**Returns**: [<code>kvmesh</code>](#kvmesh) - The current kvmesh instance.  
+**Kind**: static method of [<code>nixconfig</code>](#nixconfig)  
+**Returns**: [<code>nixconfig</code>](#nixconfig) - The current nixconfig instance.  
 **Throws**:
 
 - <code>Error</code> When a supplied path cannot be reached.
 
-**See**: [get](#kvmesh.get) for details on pathing.  
+**See**: [get](#nixconfig.get) for details on pathing.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>string</code> | The name of the value to set. |
 
-<a name="kvmeshFactory"></a>
+<a name="nixconfigFactory"></a>
 
-## kvmeshFactory(options) ⇒ [<code>kvmesh</code>](#kvmesh)
-Build a kvmesh instance.
+## nixconfigFactory(options) ⇒ [<code>nixconfig</code>](#nixconfig)
+Build a nixconfig instance.
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| options | [<code>KvmeshOptions</code>](#KvmeshOptions) | Configuration options object for the returned instance. |
+| options | [<code>NixconfigOptions</code>](#NixconfigOptions) | Configuration options object for the returned instance. |
 
-<a name="KvmeshOptions"></a>
+<a name="NixconfigOptions"></a>
 
-## KvmeshOptions : <code>object</code>
+## NixconfigOptions : <code>object</code>
 **Kind**: global typedef  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | initialConfig | <code>object</code> | A default config object in case no configuration files are available. Default: `{}`. |
-| delim | <code>string</code> | Set the delimiter to use in path based operations like [get](#kvmesh.get). Default: `.`. |
+| delim | <code>string</code> | Set the delimiter to use in path based operations like [get](#nixconfig.get). Default: `.`. |
 | loaders | <code>array</code> \| <code>object</code> | Define a set of additional configuration loaders. If passing an array, the array should be a list of objects like `{ext: '.foo', method: () => {}}`. If passing an object, the keys should be the extension and the values the methods, e.g. `{ '.foo': () => {} }`. |
 | logger | <code>object</code> | A logger instance that conforms to the log4j API. For example, [https://npm.im/pino](https://npm.im/pino). |
 

@@ -1,49 +1,49 @@
 'use strict'
 
 const test = require('tap').test
-const kvmeshProto = require('../lib/kvmesh')
+const nixconfigProto = require('../lib/nixconfig')
 
 test('set throws error for missing path', (t) => {
   t.plan(1)
-  const kvmesh = Object.create(kvmeshProto, {config: {value: {}}})
-  t.throws(() => kvmesh.set('foo.bar', 'baz'), /Missing path/)
+  const nixconfig = Object.create(nixconfigProto, {config: {value: {}}})
+  t.throws(() => nixconfig.set('foo.bar', 'baz'), /Missing path/)
 })
 
 test('set adds a value', (t) => {
   t.plan(2)
-  const kvmesh = Object.create(kvmeshProto, {config: {value: {}}})
-  kvmesh.set('foo', 'bar')
-  t.ok(kvmesh.config.foo)
-  t.ok(kvmesh.config.foo, 'bar')
+  const nixconfig = Object.create(nixconfigProto, {config: {value: {}}})
+  nixconfig.set('foo', 'bar')
+  t.ok(nixconfig.config.foo)
+  t.ok(nixconfig.config.foo, 'bar')
 })
 
 test('set sets a deep value', (t) => {
   t.plan(2)
-  const kvmesh = Object.create(kvmeshProto, {config: {value: {}}})
-  kvmesh.config.foo = {}
-  kvmesh.set('foo.bar', 'baz')
-  t.ok(kvmesh.config.foo.bar)
-  t.is(kvmesh.config.foo.bar, 'baz')
+  const nixconfig = Object.create(nixconfigProto, {config: {value: {}}})
+  nixconfig.config.foo = {}
+  nixconfig.set('foo.bar', 'baz')
+  t.ok(nixconfig.config.foo.bar)
+  t.is(nixconfig.config.foo.bar, 'baz')
 })
 
 test('get retrieves a value', (t) => {
   t.plan(1)
-  const kvmesh = Object.create(kvmeshProto, {config: {value: {}}})
-  kvmesh.config.foo = 'bar'
-  t.is(kvmesh.get('foo'), 'bar')
+  const nixconfig = Object.create(nixconfigProto, {config: {value: {}}})
+  nixconfig.config.foo = 'bar'
+  t.is(nixconfig.get('foo'), 'bar')
 })
 
 test('get retrieves a deep value', (t) => {
   t.plan(1)
-  const kvmesh = Object.create(kvmeshProto, {config: {value: {}}})
-  kvmesh.config.foo = {bar: 'baz'}
-  t.is(kvmesh.get('foo.bar'), 'baz')
+  const nixconfig = Object.create(nixconfigProto, {config: {value: {}}})
+  nixconfig.config.foo = {bar: 'baz'}
+  t.is(nixconfig.get('foo.bar'), 'baz')
 })
 
 test('get retrieves a deep value with alternate delimiter', (t) => {
   t.plan(1)
-  const kvmesh = Object.create(kvmeshProto, {config: {value: {}}})
-  kvmesh.delim = ':'
-  kvmesh.config.foo = {bar: 'baz'}
-  t.is(kvmesh.get('foo:bar'), 'baz')
+  const nixconfig = Object.create(nixconfigProto, {config: {value: {}}})
+  nixconfig.delim = ':'
+  nixconfig.config.foo = {bar: 'baz'}
+  t.is(nixconfig.get('foo:bar'), 'baz')
 })
