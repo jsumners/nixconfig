@@ -89,6 +89,18 @@ const nixconfig = require('nixconfig')({
 Custom loaders will be appended to the standard set of loaders. All file
 loaders are processed prior to all non-file loaders.
 
+### Environment Loader
+
+The environment loader looks for environment variables prefixed with either
+`nixconfig_` or the value of `nixconfigPrefix` with the application's
+`package.json`. Thus, the environment variable `nixconfig_foo=bar` would
+result in `console.log( nixconfig.get('foo') ) // 'bar'`.
+
+The environment loader also supports setting deeply nested variables. To do so,
+simply separate the object path properties with `__`. For example,
+`nixconfig_foo__bar=foobar` would result in
+`console.log( nixconfig.get('foo.bar') ) // 'foobar'`.
+
 ## API
 <a id="api"></a>
 
