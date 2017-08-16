@@ -7,6 +7,15 @@ const readConfig = require('./lib/readConfig')
 /**
  * @property {object} [initialConfig] A default config object in case no
  * configuration files are available. Default: `{}`.
+ * @property {string} [parentName] The name of the application. If not supplied,
+ * this will be determined by traversing the directory tree up to the first
+ * directory with a `node_modules` directory and a `package.json` that is *not*
+ * the `nixconfig` module directory and using the value of `name` within the
+ * found `package.json. If this is set, then the `parentPath` option must also
+ * be set. Default: `undefined`.
+ * @property {string} [parentPath] The absolute path to the application's
+ * root directory. This must be set if `parentName` is set. If not set, the
+ * path will be determined in the same fashion as `parentName`. Default: `undefined`.
  * @property {string} [delim] Set the delimiter to use in path based operations
  * like {@link nixconfig.get}. Default: `.`.
  * @property {array|object} [loaders] Define a set of additional configuration
@@ -29,6 +38,10 @@ const readConfig = require('./lib/readConfig')
  */
 module.exports = function (options) {
   const instance = Object.create(nixconfigProto)
+
+  require('./lib/parentPkg')(options.parentName, options.parentPath)
+  const lookupPaths = require('./lib/lookupPaths')
+  Object.defineProperty(instance, 'lookupPaths', {value: lookupPaths})
 
   if (options.delim) instance.delim = options.delim
 

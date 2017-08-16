@@ -4,7 +4,7 @@ const test = require('tap').test
 const mockquire = require('mock-require')
 const envLoaderPath = require.resolve('../lib/envLoader')
 
-mockquire('../lib/parentPkg', {nixconfigPrefix: 'test_'})
+mockquire('../lib/parentPkg', () => { return {nixconfigPrefix: 'test_'} })
 
 test('sets shallow variables', (t) => {
   t.plan(2)

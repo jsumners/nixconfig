@@ -128,12 +128,23 @@ factory function:
   delim: '.', // String path delimeter for the `get` and `set` methods.
   logger: {}, // A log4j API compliant logger like https://npm.im/pino (null logger by default).
   loaders: [], // An array of loader objects: `{ext: '.foo', method: (file) => {}}`.
-  initialConfig: {} // Defaults to use if no configuration files are found.
+  initialConfig: {}, // Defaults to use if no configuration files are found.,
+  parentName: '', // Defaults to `undefined`. Name of the app. If set, so must be `parentPath`.
+  parentPath: '' // Defaults to `undefined`. Absolute path to application root dir.
 }
 ```
 
 The `loaders` property may also be an object wherein the keys are the extensions
 and the values are the associated methods.
+
+When `parentName` and `parentPath` are set *nixconfig* will use these values
+to load the application's `package.json` and the configuration files. For
+example, given `{parentName: 'not-foo', parentPath: '/tmp/foo'}` then *nixconfig*
+will:
+
+1. Load the `/tmp/foo/package.json` file and update the loaded object's `name`
+property to be `'not-foo'`.
+2. Look for configuration files like `not-foo.json` and `not-foo.js`.
 
 ## License
 

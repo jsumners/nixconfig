@@ -4,9 +4,11 @@ const path = require('path')
 const test = require('tap').test
 const mockquire = require('mock-require')
 
-mockquire('../lib/parentPkg', {
-  name: 'foo',
-  nixconfigPrefix: 'nixconfig_'
+mockquire('../lib/parentPkg', () => {
+  return {
+    name: 'foo',
+    nixconfigPrefix: 'nixconfig_'
+  }
 })
 
 mockquire('../lib/lookupPaths', [
