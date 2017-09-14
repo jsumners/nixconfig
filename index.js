@@ -1,6 +1,6 @@
 'use strict'
 
-const assign = require('deep-assign')
+const assign = require('merge-options')
 const nixconfigProto = require('./lib/nixconfig')
 const readConfig = require('./lib/readConfig')
 
