@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "abstract-logging": "^1.0.0",
-    "deep-assign": "^2.0.0"
+    "merge-options": "^1.0.0"
   }
 }
