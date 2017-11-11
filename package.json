@@ -1,6 +1,6 @@
 {
   "name": "nixconfig",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A config management library (yet another one)",
   "main": "index.js",
   "scripts": {
