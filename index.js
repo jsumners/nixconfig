@@ -2,7 +2,6 @@
 
 const assign = require('merge-options')
 const nixconfigProto = require('./lib/nixconfig')
-const readConfig = require('./lib/readConfig')
 
 /**
  * @property {object} [initialConfig] A default config object in case no
@@ -40,6 +39,7 @@ module.exports = function (options) {
   const instance = Object.create(nixconfigProto)
 
   require('./lib/parentPkg')(options.parentName, options.parentPath)
+  const readConfig = require('./lib/readConfig')
   const lookupPaths = require('./lib/lookupPaths')
   Object.defineProperty(instance, 'lookupPaths', {value: lookupPaths})
 
