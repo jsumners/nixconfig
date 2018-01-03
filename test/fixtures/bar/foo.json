@@ -1,0 +1,6 @@
+[
+  {"should": "be in final config"},
+  "should not be in final config",
+  {"gets_overwritten": "inital"},
+  {"gets_overwritten": "final"}
+]
