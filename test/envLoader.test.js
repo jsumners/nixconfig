@@ -46,6 +46,10 @@ test('recognizes prefix', (t) => {
 
 test('ignores nixconfig_config_home', (t) => {
   t.plan(1)
+
+  mockquire('../lib/parentPkg', () => { return {nixconfigPrefix: 'nixconfig_'} })
+  t.tearDown(() => mockquire.stopAll())
+
   delete require.cache[envLoaderPath]
   const envLoader = require(envLoaderPath)
   process.env['nixconfig_config_home'] = '/tmp'

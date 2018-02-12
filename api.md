@@ -122,10 +122,10 @@ Build a nixconfig instance.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| initialConfig | <code>object</code> | A default config object in case no configuration files are available. Default: `{}`. |
-| parentName | <code>string</code> | The name of the application. If not supplied, this will be determined by traversing the directory tree up to the first directory with a `node_modules` directory and a `package.json` that is *not* the `nixconfig` module directory and using the value of `name` within the found `package.json. If this is set, then the `parentPath` option must also be set. Default: `undefined`. |
-| parentPath | <code>string</code> | The absolute path to the application's root directory. This must be set if `parentName` is set. If not set, the path will be determined in the same fashion as `parentName`. Default: `undefined`. |
-| delim | <code>string</code> | Set the delimiter to use in path based operations like [get](#nixconfig.get). Default: `.`. |
-| loaders | <code>array</code> \| <code>object</code> | Define a set of additional configuration loaders. If passing an array, the array should be a list of objects like `{ext: '.foo', method: () => {}}`. If passing an object, the keys should be the extension and the values the methods, e.g. `{ '.foo': () => {} }`. |
+| [initialConfig] | <code>object</code> | A default config object in case no configuration files are available. Default: `{}`. |
+| [parentName] | <code>string</code> | The name of the application. If not supplied, this will be determined by traversing the directory tree up to the first directory with a `node_modules` directory and a `package.json` that is *not* the `nixconfig` module directory and using the value of `name` within the found `package.json. If this is set, then the `parentPath` option must also be set. Default: `undefined`. |
+| [parentPath] | <code>string</code> | The absolute path to the application's root directory. This must be set if `parentName` is set. If not set, the path will be determined in the same fashion as `parentName`. Default: `undefined`. |
+| [delim] | <code>string</code> | Set the delimiter to use in path based operations like [get](#nixconfig.get). Default: `.`. |
+| [loaders] | <code>array</code> \| <code>object</code> | Define a set of additional configuration loaders. If passing an array, the array should be a list of objects like `{ext: '.foo', method: () => {}}`. If passing an object, the keys should be the extension and the values the methods, e.g. `{ '.foo': () => {} }`. |
 | logger | <code>object</code> | A logger instance that conforms to the log4j API. For example, [https://npm.im/pino](https://npm.im/pino). |
 
