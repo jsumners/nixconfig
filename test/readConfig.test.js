@@ -63,6 +63,24 @@ test('loads object based config files', (t) => {
     delete process.env['nixconfig_foobar']
   })
 
+  t.test('includes errors and list of missing files', (t) => {
+    t.plan(5)
+    const nixconfigProto = require('../lib/nixconfig')
+    const readConfig = require('../lib/readConfig')
+    const nixconfig = Object.create(nixconfigProto, {
+      config: {value: {}},
+      log: {value: require('abstract-logging')}
+    })
+    const config = readConfig(nixconfig)
+    const sym1 = Symbol.for('nixconfig.errors')
+    const sym2 = Symbol.for('nixconfig.notFound')
+    t.ok(config[sym1])
+    t.is(config[sym1].length, 1)
+    t.match(config[sym1][0], /should be caught and registered/)
+    t.ok(config[sym2])
+    t.ok(config[sym2].length > 0)
+  })
+
   t.end()
 })
 

@@ -10,7 +10,7 @@ const nixconfigProto = require('./lib/nixconfig')
  * this will be determined by traversing the directory tree up to the first
  * directory with a `node_modules` directory and a `package.json` that is *not*
  * the `nixconfig` module directory and using the value of `name` within the
- * found `package.json. If this is set, then the `parentPath` option must also
+ * found `package.json`. If this is set, then the `parentPath` option must also
  * be set. Default: `undefined`.
  * @property {string} [parentPath] The absolute path to the application's
  * root directory. This must be set if `parentName` is set. If not set, the
