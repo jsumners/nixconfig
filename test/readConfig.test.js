@@ -71,6 +71,7 @@ test('loads object based config files', (t) => {
       config: {value: {}},
       log: {value: require('abstract-logging')}
     })
+    nixconfig.addLoader('.foo', require('./fixtures/fooLoader')['.foo'])
     const config = readConfig(nixconfig)
     const sym1 = Symbol.for('nixconfig.errors')
     const sym2 = Symbol.for('nixconfig.notFound')
@@ -78,7 +79,7 @@ test('loads object based config files', (t) => {
     t.is(config[sym1].length, 1)
     t.match(config[sym1][0], /should be caught and registered/)
     t.ok(config[sym2])
-    t.ok(config[sym2].length > 0)
+    t.is(config[sym2].length, 3)
   })
 
   t.end()
